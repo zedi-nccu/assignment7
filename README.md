@@ -11,7 +11,15 @@ Obejctive: Building a basic structure of a game and practice Object-Oriented Des
 ### Description
 
 In this assignment, you are required to complete the following:
-1. Complete the missing part with the **TODO*** comments.
-2. Setup the simple MVC architecture.
+1. Complete the missing part with the **//TODO** comments.
+2. Setup the simple Model-View-Controller architecture.
+3. Create some GameObjects and player-controlled GameObject in Map
 
 ### Expected Output
+
+
+
+https://github.com/user-attachments/assets/5e90f4cc-372d-4232-abac-67e397f0f73d
+
+### File Structure
+
