@@ -11,7 +11,7 @@ Obejctive: Building a basic structure of a game and practice Object-Oriented Des
 ### Description
 
 In this assignment, you are required to complete the following:
-1. Complete the missing part with the **//TODO** comments.
+1. Complete the missing part with the `//TODO` comments.
 2. Setup the simple Model-View-Controller architecture.
 3. Create some GameObjects and player-controlled GameObject in Map
 
@@ -21,5 +21,32 @@ In this assignment, you are required to complete the following:
 
 https://github.com/user-attachments/assets/5e90f4cc-372d-4232-abac-67e397f0f73d
 
-### File Structure
+### Compile and Run
+Before compiling the program, in **Project Folder**:
+```console
+mkdir build
+```
+```console
+cd build
+```
+
+Then in `build/`:
+```console
+cmake ..
+```
+
+To compile the program, in `build/`:
+```console
+make
+```
+
+To run the program, in `build/`:
+```console
+./exec
+```
+### Reminder
+
+1. The default include path is set to `include/`, any header file below `include` can be included directly.
+2. You can add new files for more features, but the required part noted by `//TODO` must be implemented.
+3. After finishing this assignment, you can start to think what games you can make with the architecture.
 
