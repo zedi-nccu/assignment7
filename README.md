@@ -48,10 +48,10 @@ To run the program, in `build/`:
 ### Scoreing Criteria
 |Description|Score|
 |-----|-----|
-|Submit the assignment|10|
+|Submit the assignment|15|
+|Able to compile|10|
 |Draw static GameObject correctly|30|
 |Draw dynamic GameObject correctly|15|
-|Implement GameObject|15|
 |Implement IconFactory|10|
 |Implement GameObjectFactory|10|
 |Handling key input to control GameObjects|10|
