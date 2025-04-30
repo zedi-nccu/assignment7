@@ -44,6 +44,18 @@ To run the program, in `build/`:
 ```console
 ./exec
 ```
+
+### Scoreing Criteria
+|Description|Score|
+|-----|-----|
+|Submit the assignment|10|
+|Draw static GameObject correctly|30|
+|Draw dynamic GameObject correctly|15|
+|Implement GameObject|15|
+|Implement IconFactory|10|
+|Implement GameObjectFactory|10|
+|Handling key input to control GameObjects|10|
+
 ### Reminder
 
 1. The default include path is set to `include/`, any header file below `include` can be included directly.
