@@ -62,3 +62,5 @@ To run the program, in `build/`:
 2. You can add new files for more features, but the required part noted by `//TODO` must be implemented.
 3. After finishing this assignment, you can start to think what games you can make with the architecture.
 
+### UML Class Diagram
+<img width="815" alt="image" src="https://github.com/user-attachments/assets/8faa7f01-0e0c-478d-94cf-80ee6888c480" />
