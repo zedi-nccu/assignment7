@@ -7,9 +7,11 @@
 #include "environment.h"
 #include "controller.h"
 #include "gameObjectFactory.h"
-
+#include "iconFactory.h"
 
 Controller::Controller(View& view) : _view(view){
+	_snake=GameObjectFactory::createSnake();
+	createNewfood();
 }
 
 void Controller::run() {
@@ -23,7 +25,7 @@ void Controller::run() {
     clock_t start, end;
     
     // Main loop
-    while (true) {
+    while (!_gameOver) {
         start = clock();
         // game loop goes here
         input = read_input();
@@ -32,15 +34,18 @@ void Controller::run() {
         if(input==27)break;
 
         this->handleInput(input);
-
+	_snake->update();
+	checkCollision();
         _view.resetLatest();
-        for(GameObject* obj : _objs) 
-        {
+	_view.updateGameObject(_snake);
+        Icon bodyicon=IconFactory::createSnakeBodyIcon();
+	const auto& body=_snake->getbody();
+	for(size_t i=1;i<body.size();++i){
+		GameObject bodypart(body[i], bodyicon);
+		_view.updateGameObject(bodypart);
+	}
+	_view.updateGameObject(_food);
 
-            obj->update();
-
-            _view.updateGameObject(obj);
-        }
 
         _view.render();
 
@@ -62,6 +67,7 @@ void Controller::handleInput(int keyInput){
 
     // If there is no input, do nothing.
     if(keyInput==-1)return;
+
     
 
     // TODO 

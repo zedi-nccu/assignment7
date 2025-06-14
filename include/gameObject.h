@@ -8,10 +8,11 @@
 class GameObject{
 
 public:
-
-    Position getPosition() const;
-    Icon getIcon() const;
-    virtual void update();
+	GameObject()=default;
+	GameObject(Position pos, Icon icon);
+	Position getPosition() const;
+	Icon getIcon() const;
+	virtual void update();
 protected:
 
     Position _pos;
