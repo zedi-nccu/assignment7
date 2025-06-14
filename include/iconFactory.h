@@ -2,3 +2,7 @@
 // Finish the declaration of IconFactory that
 // 1. offers some methods to create an Icon.
 // 2. encapsulates the constructor from the caller. 
+#ifdef ICONFACTORY_H
+#define ICONFACTORY_H
+
+
