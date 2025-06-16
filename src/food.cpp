@@ -1,8 +1,8 @@
 #include "food.h"
-#include "iconFactory"
+#include "iconFactory.h"
 food::food (Position pos){
 	_pos=pos;
-	_icon=iconFactory::createFood();
+	_icon=IconFactory::createfood();
 }
 void food::respawn(Position newpos){
 	_pos=newpos;

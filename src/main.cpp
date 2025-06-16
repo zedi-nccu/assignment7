@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <ctime>
 #include "view.h"
 #include "controller.h"
 #include "AnsiPrint.h"
@@ -18,9 +20,14 @@ PrintMyID(std::string studId) {
 int main(){
     // TODO 
     // Integrate the Simple MVC Pattern to run the program.
-
+    srand(time(0));
+    View view;
+    Controller controller(view);
+    controller.run();
+	
 
     // TODO
     // change to your student ID.
-    PrintMyID("1137030XX");
+    PrintMyID("Writer::113703042");
+    return 0;
 }

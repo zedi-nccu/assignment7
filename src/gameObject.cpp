@@ -9,4 +9,4 @@ Icon GameObject::getIcon() const{
 }
 GameObject:: GameObject(Position pos, Icon icon):_pos(pos), _icon(icon){
 }
-void GameObject:: update()=default;
+void GameObject:: update(){}

@@ -3,10 +3,10 @@
 #include "iconFactory.h"
 #include <type_traits>
 #include <vector>
-Snake::Snake(Position Start):Dir(RIGHT){
+Snake::Snake(Position Start):Dir(Direction::RIGHT){
 	_pos=Start;
-	body.push_back(_pos);
-	_icon=iconFactory::createSnakeHeadIcon();
+	Body.push_back(_pos);
+	_icon=IconFactory::createSnakeHeadIcon();
 }
 void Snake::grow(){
 	Body.push_back(Body.back());
@@ -25,11 +25,11 @@ void Snake::update(){
 }
 bool Snake::check(){
 	Position head=getHeadPosition();
-	if(head.x()<0||head.x()>=GAME_WINDOW_WIDTH||head.y()<0||head.y>=GAME_WINDOW_HEIGHT){
+	if(head.x()<0||head.x()>=GAME_WINDOW_WIDTH||head.y()<0||head.y()>=GAME_WINDOW_HEIGHT){
 		return true;
 	}
-	for(int i=1;i<body.size();i++){
-		if(body[i]==head){
+	for(int i=1;i<Body.size();i++){
+		if(Body[i]==head){
 			return true;
 		}
 	}
@@ -39,7 +39,7 @@ Position Snake::getHeadPosition(){
 	return _pos;
 }
 const std::vector<Position>& Snake::getbody() const{
-	return body;
+	return Body;
 }
 
 

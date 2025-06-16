@@ -3,6 +3,7 @@
 #include <thread>
 #include <unistd.h>
 #include <termios.h>
+#include <cctype>
 
 #include "environment.h"
 #include "controller.h"
@@ -42,7 +43,7 @@ void Controller::run() {
 	const auto& body=_snake->getbody();
 	for(size_t i=1;i<body.size();++i){
 		GameObject bodypart(body[i], bodyicon);
-		_view.updateGameObject(bodypart);
+		_view.updateGameObject(&bodypart);
 	}
 	_view.updateGameObject(_food);
 
@@ -66,7 +67,7 @@ void Controller::createNewfood(){
 	do{
 		onSnake=false;
 		foodpos={rand()%GAME_WINDOW_WIDTH, rand()%GAME_WINDOW_HEIGHT};
-		const auto& snakebody= _snake->getBody();
+		const auto& snakebody= _snake->getbody();
 		for(const auto& part: snakebody){
 			if(foodpos==part){
 				onSnake=true;
@@ -74,7 +75,7 @@ void Controller::createNewfood(){
 			}
 		}
 	}while(onSnake);
-	_food=new food(foodPos);
+	_food=new food(foodpos);
 }
 
 
@@ -84,7 +85,7 @@ void Controller::checkCollision(){
 		return;
 	}
 	if(_snake->getHeadPosition().x()==_food->getPosition().x()&&
-			_snake()->getHeadPosition().y()==_food->getPosition().y()){
+			_snake->getHeadPosition().y()==_food->getPosition().y()){
 		_snake->grow();
 		delete _food;
 		createNewfood();
@@ -97,12 +98,28 @@ void Controller::handleInput(int keyInput){
 
     // If there is no input, do nothing.
     if(keyInput==-1)return;
+    keyInput=tolower(keyInput);
+    switch(keyInput){
+	     case 'w':
+            if (_snake->Dir != Direction::DOWN) _snake->Dir = Direction::UP;
+            break;
+        case 's':
+            if (_snake->Dir != Direction::UP) _snake->Dir = Direction::DOWN;
+            break;
+        case 'a':
+            if (_snake->Dir != Direction::RIGHT) _snake->Dir = Direction::LEFT;
+            break;
+        case 'd':
+            if (_snake->Dir != Direction::LEFT) _snake->Dir = Direction::RIGHT;
+            break;
+    }
+}
 
     
 
     // TODO 
     // handle key events.
-}
+
 
 void Controller::update(){
 

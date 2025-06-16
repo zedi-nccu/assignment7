@@ -1,6 +1,6 @@
 // TODO implementation
 #include "gameObjectFactory.h"
-#include "enviroment.h"
+#include "environment.h"
 #include <cstdlib>
 #include <ctime>
 
