@@ -1,4 +1,7 @@
 # Assignment7
+
+## 遊戲流程圖
+
 ```mermaid
 graph TD
     A([開始]) --> B{初始化};
@@ -20,4 +23,3 @@ graph TD
     P --> D;
     J --> Q([遊戲結束]);
     D -- No --> Q;
-    ```
