@@ -1,90 +1,23 @@
 # Assignment7
-classDiagram
-    class Controller {
-        - Snake* _snake
-        - food* _food
-        - View& _view
-        - bool _gameOver
-        + Controller(View&)
-        + ~Controller()
-        + run()
-        - checkCollision()
-        - createNewfood()
-        - handleInput(int)
-    }
-
-    class View {
-        - int _termWidth
-        - int _termHeight
-        - vector~vector~string~~ latest_map, last_map
-        - vector~vector~Color~~ latest_fg_color, last_fg_color
-        - vector~vector~Color~~ latest_bg_color, last_bg_color
-        + View()
-        + render()
-        + updateGameObject(GameObject*)
-        + resetLatest()
-    }
-
-    class GameObject {
-        # Position _pos
-        # Icon _icon
-        + GameObject()
-        + Position getPosition() const
-        + Icon getIcon() const
-        + virtual void update()
-    }
-
-    class Snake {
-        - vector~Position~ Body
-        + Direction Dir
-        + Snake(Position)
-        + grow()
-        + update() override
-        + bool check()
-        + Position getHeadPosition()
-        + const vector~Position~& getbody() const
-    }
-
-    class food {
-        + food(Position)
-        + respawn(Position)
-    }
-
-    class GameObjectFactory {
-        <<static>>
-        + static Snake* createSnake()
-        + static food* createfood()
-    }
-
-    class IconFactory {
-        <<static>>
-        + static Icon createSnakeHeadIcon()
-        + static Icon createfood()
-        + static Icon createSnakeBodyIcon()
-    }
-    
-    class Icon
-    class Cell
-    class Position
-    
-    Controller --* Snake
-    Controller --* food
-    Controller --o View
-    Controller ..> GameObjectFactory
-    Controller ..> IconFactory
-    
-    View ..> GameObject
-    View ..> Position
-    View ..> Cell
-    View ..> Icon
-    
-    Snake --|> GameObject
-    food --|> GameObject
-    
-    GameObject --* Position
-    GameObject --* Icon
-    
-    Snake ..> IconFactory
-    food ..> IconFactory
-
-    Icon "1" --* "n" Cell : contains
+```mermaid
+graph TD
+    A([開始]) --> B{初始化};
+    B --> C[設定 gameOver = false];
+    C --> D{遊戲主迴圈<br>while !gameOver};
+    D -- Yes --> E(標記本幀開始時間);
+    E --> F[[讀取玩家輸入]];
+    F --> G[根據輸入更新小蛇方向];
+    G --> H[更新小蛇位置<br>(身體前進一格)];
+    H --> I{檢查碰撞};
+    I -- 撞到牆壁或自己? --> J[設定 gameOver = true];
+    I -- 都沒有 --> K{吃到食物了嗎?};
+    K -- Yes --> L[小蛇長大<br>產生新食物];
+    K -- No --> M[清除畫面緩衝];
+    L --> M;
+    M --> N[更新小蛇與食物到緩衝區];
+    N --> O[[渲染畫面到終端機]];
+    O --> P[控制幀率<br>(等待直到下一幀)];
+    P --> D;
+    J --> Q([遊戲結束]);
+    D -- No --> Q;
+    ```
