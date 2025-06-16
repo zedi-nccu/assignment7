@@ -60,6 +60,36 @@ void Controller::run() {
     }
 
 }
+void Controller::createNewfood(){
+	bool onSnake=false;
+	Position foodpos;
+	do{
+		onSnake=false;
+		foodpos={rand()%GAME_WINDOW_WIDTH, rand()%GAME_WINDOW_HEIGHT};
+		const auto& snakebody= _snake->getBody();
+		for(const auto& part: snakebody){
+			if(foodpos==part){
+				onSnake=true;
+				break;
+			}
+		}
+	}while(onSnake);
+	_food=new food(foodPos);
+}
+
+
+void Controller::checkCollision(){
+	if(_snake->check()){
+		_gameOver=true;
+		return;
+	}
+	if(_snake->getHeadPosition().x()==_food->getPosition().x()&&
+			_snake()->getHeadPosition().y()==_food->getPosition().y()){
+		_snake->grow();
+		delete _food;
+		createNewfood();
+	}
+}
 
 
 
