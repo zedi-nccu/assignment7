@@ -10,8 +10,8 @@
 class Controller{
 
 public:
-       
     Controller(View&);
+    ~Controller();
     void run();
 private:
     void checkCollision();

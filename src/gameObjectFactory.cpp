@@ -5,7 +5,7 @@
 #include <ctime>
 
 Snake* GameObjectFactory::createSnake(){
-	return new Snake({GAME_WINDOW_WIDTH,GAME_WINDOW_HEIGHT});
+	return new Snake({GAME_WINDOW_WIDTH/2,GAME_WINDOW_HEIGHT/2});
 }
 food* GameObjectFactory::createfood(){
 	srand(time(0));

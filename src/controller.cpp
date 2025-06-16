@@ -14,6 +14,10 @@ Controller::Controller(View& view) : _view(view){
 	_snake=GameObjectFactory::createSnake();
 	createNewfood();
 }
+Controller::~Controller(){
+	delete _snake;
+	delete _food;
+}
 
 void Controller::run() {
     // initial setup
